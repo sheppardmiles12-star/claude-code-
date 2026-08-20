@@ -98,6 +98,34 @@ run so the next day's pull continues rather than repeating.
 `waitSecs` caps at 45 seconds. A 100-lead run usually exceeds that, so poll
 `get-actor-run` until terminal, then pull rows with `get-dataset-items`.
 
+### What counts as in-ICP
+
+The user's definition, applied in the 20-lead sample and in any filter revision:
+
+- **A real roofing company.** Roofing is the primary or exclusive trade. Not a
+  supplier or manufacturer, not an insurance or adjuster firm, not a general
+  contractor that mentions roofing in passing, and not a multi-trade exteriors
+  or insulation business where roofing is one line among several.
+- **A reachable decision-maker.** Owner, president, CEO, or GM, not a random
+  employee. The email is real and verified, not guessed or an unrelated personal
+  address.
+
+Email verification is judged here rather than filtered upstream, because the
+user does not want `emailStatus` narrowing the pool.
+
+### Check the pool size before scraping
+
+The free count returns the *total* matching pool, not just what a run would
+return. If the pool is barely larger than the number of leads wanted, the ICP
+gate has nowhere to go: tightening the filters after a failed sample would drop
+the pool below the target. Say so before scraping rather than after, because the
+options at that point are to widen the ICP, widen the geography, or accept a
+smaller batch, and all three are the user's call.
+
+Also watch for overlap with leads already enriched. A pool this size will mostly
+return the same companies as last time, so check new results against prior
+batches before paying to enrich them again.
+
 ### The ICP quality gate
 
 Scrape quality decides everything downstream, so check it before enriching.
