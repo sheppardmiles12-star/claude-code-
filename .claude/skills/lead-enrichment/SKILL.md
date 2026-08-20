@@ -104,44 +104,34 @@ run so the next day's pull continues rather than repeating.
 
 ### What counts as in-ICP
 
-The user's definition, applied in the 20-lead sample and in any filter revision:
+The user's definition, parameterised by whichever niche the run is targeting.
+Substitute the niche for `{{niche}}` and apply it in the 20-lead sample and in
+any filter revision:
 
-- **A real roofing company.** Roofing is the primary or exclusive trade. Not a
-  supplier or manufacturer, not an insurance or adjuster firm, not a general
-  contractor that mentions roofing in passing, and not a multi-trade exteriors
-  or insulation business where roofing is one line among several.
+- **A real `{{niche}}` company.** `{{niche}}` is the company's primary or
+  exclusive trade. Not a supplier or manufacturer, not an insurance or adjuster
+  firm, not a general contractor that mentions `{{niche}}` in passing, and not a
+  multi-trade exteriors or insulation business where `{{niche}}` is one line
+  among several.
 - **A reachable decision-maker.** Owner, president, CEO, or GM, not a random
   employee. The email is real and verified, not guessed or an unrelated personal
   address.
 
 Email verification is judged here rather than filtered upstream, because the
-user does not want `emailStatus` narrowing the pool.
+user does not want `emailStatus` narrowing the pool. In the output data,
+`emailStatus: deliverable` is the good value.
 
-### Plan limits and the progress cursor
+The "primary trade" half is what the sample usually turns on, and it bites
+differently per niche. Roofing pulls in multi-trade exteriors firms; electrical
+pulls in electrical *manufacturers* and industrial contractors; gutters and
+siding overlap heavily with roofers. Name the specific pattern the misses share
+when reporting a failed gate, because that is what tells the user which keyword
+to exclude next.
 
-The free tier caps a run at **100 leads**; paid tiers go to 50,000. So on free,
-100 is a ceiling rather than a floor, and a pool larger than 100 needs several
-runs rather than one big one.
-
-Progress is saved **per filter set**: an identical rerun continues where the last
-one stopped, which is what stops you paying twice for the same lead. The catch
-is that changing any filter makes it a different search, so a widened filter set
-starts from the beginning again and will re-serve leads already pulled under the
-old filters. Widening is therefore not free even when the count is: expect
-overlap and dedupe locally.
-
-Always dedupe new results against previously enriched batches on `email`, and
-on `companyDomain` for the company-level research. `scripts/dedupe_leads.py`
-does this. Re-enriching a company already researched wastes roughly two web
-searches and buys nothing.
-
-### Judging email quality
-
-The output field `emailStatus` carries `deliverable` for a good address. Note
-the actor's own docs disagree with themselves on the *input* enum (the filter
-table lists `deliverable / catch_all / pattern_match`, the examples use
-`verified / unverified`), which is one reason not to filter on it. Judge the
-output value instead, during the 20-lead sample.
+**Each niche needs its own gate.** A different keyword is a different search
+with different noise, so a pass on one niche says nothing about the next. Never
+carry a score across niches, and never enrich a niche that has not passed on its
+own sample.
 
 ### Check the pool size before scraping
 
