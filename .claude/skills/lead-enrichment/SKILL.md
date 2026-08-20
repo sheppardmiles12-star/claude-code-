@@ -121,6 +121,19 @@ cursor between runs, so a throwaway test would otherwise advance past leads the
 real run should have picked up. Leave progress saving on for the accepted final
 run so the next day's pull continues rather than repeating.
 
+**Changing any filter resets the cursor to the beginning.** The saved search is
+keyed on the exact filter set, so adding or removing a single field, even one
+that only narrows, creates a new fingerprint with its own cursor starting at
+zero. On a niche already scraped under the old filters, the next run re-serves
+the subset of that same ground which survives the new filter, and bills for it.
+Adding `emailStatusIncludes: ["verified"]` to an already-scraped roofing search
+cost a full 100-lead run to get 30 new companies; 61 of 91 were re-serves.
+
+So when the filter set changes on a niche that has already been scraped, expect
+one mostly-wasted run. Either accept it as the price of the change, or skip the
+overlap with `customOffset` set past roughly the number of leads already pulled
+under the old filters. Either way, say so before spending rather than after.
+
 Never trust `itemCount` in the run response: it lags, and a run reporting zero
 items often has a full result set. Always fetch the dataset before concluding
 anything.
@@ -210,14 +223,19 @@ Enriching a bad scrape burns roughly two web searches per lead on companies the
 user never wanted.
 
 1. Scrape 100 leads (or the number the user gave; default 100).
-2. Take 20 of them and judge each against the stated ICP: right kind of
+2. **Dedupe against prior batches before sampling** whenever the filter set
+   changed since the last run on this niche. A reset cursor puts already-seen
+   companies at the head of the results, so a gate read off the first 20 scores
+   old ground rather than the new filter, and the number it produces is about
+   the previous run, not this one. Gate the net-new rows.
+3. Take 20 of them and judge each against the stated ICP: right kind of
    business, decision-maker title, size in range, and a real operating company.
-3. **15 or more of 20 in ICP (75%)**, the scrape is good. Proceed.
-4. **Fewer than 15**, something is wrong with the filters. Say what the misses
+4. **15 or more of 20 in ICP (75%)**, the scrape is good. Proceed.
+5. **Fewer than 15**, something is wrong with the filters. Say what the misses
    have in common, revise, and re-scrape. Keyword breadth is the usual culprit:
    a keyword that also matches suppliers, manufacturers, or consultants pulls in
    businesses that don't field inbound service calls.
-5. Only run the full scrape and the full enrichment once the gate passes.
+6. Only run the full scrape and the full enrichment once the gate passes.
 
 Report the sample honestly. A 12 of 20 that you talk up as fine costs the user a
 whole enrichment run.
