@@ -94,10 +94,27 @@ when the MCP connector is unavailable, since it needs no tooling on this side.
 filter set returns a sane number before any paid run. Filters that are too
 narrow return zero and burn the run for nothing.
 
+**A free count consumes the cursor for that exact filter set.** This is the
+costliest trap in the whole flow and `dontSaveProgress: true` does not prevent
+it: a `countOnly` run leaves the saved search sitting at the end, so the real
+scrape afterwards returns `status: end_of_saved_search` and few or no leads.
+`resetProgress: true` sometimes clears it and sometimes does not; the reliable
+cure is to change a keyword so the search gets a new fingerprint.
+
+So either skip the count when the pool is obviously large enough, or count on a
+deliberately different keyword from the one you intend to scrape. When a run
+comes back far short of the pool size, read the diagnostic record in the dataset
+before assuming the niche is empty; `status` and `summary` name the cause
+exactly, and a cursor-exhausted run is not charged.
+
 Set `dontSaveProgress: true` on validation and test scrapes. The actor keeps a
 cursor between runs, so a throwaway test would otherwise advance past leads the
 real run should have picked up. Leave progress saving on for the accepted final
 run so the next day's pull continues rather than repeating.
+
+Never trust `itemCount` in the run response: it lags, and a run reporting zero
+items often has a full result set. Always fetch the dataset before concluding
+anything.
 
 `waitSecs` caps at 45 seconds. A 100-lead run usually exceeds that, so poll
 `get-actor-run` until terminal, then pull rows with `get-dataset-items`.
