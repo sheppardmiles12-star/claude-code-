@@ -1,0 +1,182 @@
+[
+  {
+    "firstName": "Mark", "lastName": "Dickson", "email": "mark@aussieblueroofing.com",
+    "phone": "+18003696310", "companyName": "Aussieblue Roofing Inc.", "businessName": "Aussieblue",
+    "companySize": "10", "annualRevenue": "",
+    "companyCity": "Orange", "companyState": "California", "companyCountry": "United States",
+    "personCity": "Orange", "personState": "California", "personCountry": "United States",
+    "email_variant": "standard", "send_ready": "yes", "hold_reason": "",
+    "reviewDetail": "someone mentioned you got back to them within a few hours and had a bid over within two days",
+    "observedResponseGap": "the 24 hour emergency line is really just you, and the office doesnt open til 8"
+  },
+  {
+    "firstName": "Marco", "lastName": "Arroyo", "email": "marco@arroyo-roofing.com",
+    "phone": "+14024848140", "companyName": "Arroyo Roofing LLC", "businessName": "Arroyo Roofing",
+    "companySize": "2", "annualRevenue": "",
+    "companyCity": "Lincoln", "companyState": "Nebraska", "companyCountry": "United States",
+    "personCity": "Lincoln", "personState": "Nebraska", "personCountry": "United States",
+    "email_variant": "standard", "send_ready": "yes", "hold_reason": "",
+    "reviewDetail": "a customer talked about getting their estimate back in a couple of days and the crew turning up exactly when they said",
+    "observedResponseGap": "youre closed saturday and sunday, so a friday night storm call is sitting there til monday"
+  },
+  {
+    "firstName": "Daniel", "lastName": "Kattan", "email": "daniel@roofsquad.com",
+    "phone": "+17138935018", "companyName": "Roof Squad", "businessName": "Roof Squad",
+    "companySize": "18", "annualRevenue": "",
+    "companyCity": "Houston", "companyState": "Texas", "companyCountry": "United States",
+    "personCity": "Houston", "personState": "Texas", "personCountry": "United States",
+    "email_variant": "standard", "send_ready": "yes", "hold_reason": "",
+    "reviewDetail": "a realtor said you text updates the whole way through and actually turn up when you say you will",
+    "observedResponseGap": "one listing has you at 24 hours a day and another has you shut at 7, and i doubt both are true"
+  },
+  {
+    "firstName": "Mark", "lastName": "Bartolutti", "email": "mark@jflopezroofing.com",
+    "phone": "+19205401531", "companyName": "JF Lopez Roofing", "businessName": "JF Lopez Roofing",
+    "companySize": "4", "annualRevenue": "",
+    "companyCity": "Fond Du Lac", "companyState": "Wisconsin", "companyCountry": "United States",
+    "personCity": "Fond Du Lac", "personState": "Wisconsin", "personCountry": "United States",
+    "email_variant": "standard", "send_ready": "yes", "hold_reason": "",
+    "reviewDetail": "somebody called your follow up outstanding and said the whole job ran on time from the proposal onward",
+    "observedResponseGap": "the doors shut at 5 and dont open again til monday morning"
+  },
+  {
+    "firstName": "Brian", "lastName": "Fidler", "email": "brian@fidlerontheroofkc.com",
+    "phone": "+18167168127", "companyName": "fidler on the roof kc", "businessName": "Fidler on the Roof KC",
+    "companySize": "11", "annualRevenue": "",
+    "companyCity": "Kansas City", "companyState": "Missouri", "companyCountry": "United States",
+    "personCity": "Oak Grove", "personState": "Missouri", "personCountry": "United States",
+    "email_variant": "standard", "send_ready": "yes", "hold_reason": "",
+    "reviewDetail": "a guy said he called five roofers, three never showed and one never called back at all, and you were the one who actually stayed in touch",
+    "observedResponseGap": "youre listed as always open, which is a big promise for a local crew to cover at 2am"
+  },
+  {
+    "firstName": "Connor", "lastName": "Valentine", "email": "connor@valentineroof.com",
+    "phone": "+14258774297", "companyName": "valentine roofing", "businessName": "Valentine Roofing",
+    "companySize": "13", "annualRevenue": "",
+    "companyCity": "Seattle", "companyState": "Washington", "companyCountry": "United States",
+    "personCity": "Seattle", "personState": "Washington", "personCountry": "United States",
+    "email_variant": "standard", "send_ready": "yes", "hold_reason": "",
+    "reviewDetail": "a customer up in port orchard said you got right back every time she called and kept the updates coming",
+    "observedResponseGap": "friday you close at 4 and then nothing till monday, which is a long gap in storm season"
+  },
+  {
+    "firstName": "Jared", "lastName": "Ford", "email": "jared@blueshoeroofing.com",
+    "phone": "+19493879428", "companyName": "blue shoe roofing", "businessName": "Blue Shoe Roofing",
+    "companySize": "10", "annualRevenue": "",
+    "companyCity": "Laguna Hills", "companyState": "California", "companyCountry": "United States",
+    "personCity": "Laguna Hills", "personState": "California", "personCountry": "United States",
+    "email_variant": "standard", "send_ready": "yes", "hold_reason": "",
+    "reviewDetail": "a few people said the crew was on time and explained what was happening each day they were out",
+    "observedResponseGap": "4pm is an early close, and theres no after hours line listed anywhere i could find"
+  },
+  {
+    "firstName": "Denise", "lastName": "Bart", "email": "denise@coloradorooftoppers.com",
+    "phone": "+17203781902", "companyName": "Colorado Roof Toppers", "businessName": "Colorado Roof Toppers",
+    "companySize": "2", "annualRevenue": "",
+    "companyCity": "Mead", "companyState": "Colorado", "companyCountry": "United States",
+    "personCity": "Longmont", "personState": "Colorado", "personCountry": "United States",
+    "email_variant": "standard", "send_ready": "yes", "hold_reason": "",
+    "reviewDetail": "one review called you very responsive and said you kept them posted at every step, which for a first time roof replacement is the whole thing",
+    "observedResponseGap": "with the weekends closed, hail on a saturday afternoon has nowhere to land til monday"
+  },
+  {
+    "firstName": "Tyler", "lastName": "Schisler", "email": "tyler@shumakerroofing.com",
+    "phone": "+16193941129", "companyName": "shumaker roofing co", "businessName": "Shumaker Roofing",
+    "companySize": "5", "annualRevenue": "",
+    "companyCity": "Frederick", "companyState": "Maryland", "companyCountry": "United States",
+    "personCity": "San Diego", "personState": "Maryland", "personCountry": "United States",
+    "email_variant": "standard", "send_ready": "yes", "hold_reason": "",
+    "reviewDetail": "clear communication is the thing people mention most, and one guy got a call to book him in moments after he sent the form",
+    "observedResponseGap": "open 24 hours is what the listing says, and that only holds if something is actually catching the 1am call"
+  },
+  {
+    "firstName": "Michael", "lastName": "Langley", "email": "mlangley@cannonroofing.com",
+    "phone": "", "companyName": "Cannon Roofing", "businessName": "Cannon Roofing",
+    "companySize": "9", "annualRevenue": "",
+    "companyCity": "Spartanburg", "companyState": "South Carolina", "companyCountry": "United States",
+    "personCity": "Spartanburg", "personState": "South Carolina", "personCountry": "United States",
+    "email_variant": "standard", "send_ready": "yes", "hold_reason": "",
+    "reviewDetail": "a customer whos used you on both resi and commercial said your communication is professional and timely",
+    "observedResponseGap": "your site offers emergency repairs but the listings have you closed at 5, so those two dont quite line up"
+  },
+  {
+    "firstName": "Todd", "lastName": "Kaska", "email": "tkaska@cannonroofing.com",
+    "phone": "+18645856045", "companyName": "Cannon Roofing", "businessName": "Cannon Roofing",
+    "companySize": "9", "annualRevenue": "",
+    "companyCity": "Spartanburg", "companyState": "South Carolina", "companyCountry": "United States",
+    "personCity": "Spartanburg", "personState": "South Carolina", "personCountry": "United States",
+    "email_variant": "standard", "send_ready": "yes", "hold_reason": "",
+    "reviewDetail": "one of your project managers got called prompt, informative and very thorough, which is not the usual roofing review",
+    "observedResponseGap": "theres an emergency repair promise on the site sitting on top of an 8 to 5 weekday office"
+  },
+  {
+    "firstName": "Glenn", "lastName": "Fick", "email": "glenn@dgroofsystems.com",
+    "phone": "", "companyName": "dg roof systems", "businessName": "D&G Roof Systems",
+    "companySize": "7", "annualRevenue": "",
+    "companyCity": "Fort Worth", "companyState": "Texas", "companyCountry": "United States",
+    "personCity": "Fort Worth", "personState": "Texas", "personCountry": "United States",
+    "email_variant": "standard", "send_ready": "yes", "hold_reason": "",
+    "reviewDetail": "somebody wrote about a speedy response on a leak and getting the fix explained clearly before anything started",
+    "observedResponseGap": "8 to 5 monday to friday means a leak found on saturday waits two days for a human"
+  },
+  {
+    "firstName": "Jason", "lastName": "Nemitz", "email": "jason@dgroofsystems.com",
+    "phone": "", "companyName": "dg roof systems", "businessName": "D&G Roof Systems",
+    "companySize": "7", "annualRevenue": "",
+    "companyCity": "Fort Worth", "companyState": "Texas", "companyCountry": "United States",
+    "personCity": "Fort Worth", "personState": "Texas", "personCountry": "United States",
+    "email_variant": "standard", "send_ready": "yes", "hold_reason": "",
+    "reviewDetail": "a review named you specifically and called you an excellent communicator, which is worth something in this trade",
+    "observedResponseGap": "nothing on your listings covers the weekend, so saturday leaks queue up behind monday morning"
+  },
+  {
+    "firstName": "Jeff", "lastName": "Sandlin", "email": "jeff@maximroofing.com",
+    "phone": "+19372563908", "companyName": "Maxim Roofing Company", "businessName": "Maxim Roofing",
+    "companySize": "2", "annualRevenue": "",
+    "companyCity": "Fairborn", "companyState": "Ohio", "companyCountry": "United States",
+    "personCity": "Dayton", "personState": "Ohio", "personCountry": "United States",
+    "email_variant": "standard", "send_ready": "yes", "hold_reason": "",
+    "reviewDetail": "a homeowner said you answered calls and emails promptly the whole way through the insurance side of it",
+    "observedResponseGap": "4:30 is when it goes quiet, and after a big blow through dayton the backlog is what people notice"
+  },
+  {
+    "firstName": "Sonny", "lastName": "Thacker", "email": "sonny@sunnyroofing.com",
+    "phone": "+13037340956", "companyName": "sunny roofing", "businessName": "Sunny Roofing",
+    "companySize": "30", "annualRevenue": "",
+    "companyCity": "Sheridan", "companyState": "Colorado", "companyCountry": "United States",
+    "personCity": "Denver", "personState": "Colorado", "personCountry": "United States",
+    "email_variant": "standard", "send_ready": "yes", "hold_reason": "",
+    "reviewDetail": "someone said you turned up when you promised and squeezed their repair in two days before an open house",
+    "observedResponseGap": "the site says available 24/7 but the posted hours have you shut mondays and closed by 4 most days"
+  },
+  {
+    "firstName": "Nick", "lastName": "Robbins", "email": "nick.robbins@texasplainsroofing.com",
+    "phone": "+18064191500", "companyName": "Texas Plains Roofing", "businessName": "",
+    "companySize": "1", "annualRevenue": "",
+    "companyCity": "Pampa", "companyState": "Texas", "companyCountry": "United States",
+    "personCity": "Amarillo", "personState": "Texas", "personCountry": "United States",
+    "email_variant": "", "send_ready": "no",
+    "hold_reason": "out of ICP on closer research: they describe themselves as a full exterior contractor doing roofing, siding, windows and gutters, so roofing is not the exclusive trade. no review text about communication or response speed surfaced either, only aggregate star counts.",
+    "reviewDetail": "", "observedResponseGap": ""
+  },
+  {
+    "firstName": "Amber", "lastName": "Bunton", "email": "amber@buntonroofing.com",
+    "phone": "", "companyName": "side hustle threads", "businessName": "",
+    "companySize": "2", "annualRevenue": "",
+    "companyCity": "Tuscola", "companyState": "Texas", "companyCountry": "United States",
+    "personCity": "Tuscola", "personState": "Texas", "personCountry": "United States",
+    "email_variant": "", "send_ready": "no",
+    "hold_reason": "no review found that speaks to communication or response speed on its own; every quote blends it with workmanship and cleanup. usable response gap exists (mon to fri 8 to 5, self stated 24 to 48 hour callback window) so this is one good review away from ready. also: companyName in the export is wrong, the real company is Bunton Roofing Company LLC of Abilene.",
+    "reviewDetail": "", "observedResponseGap": ""
+  },
+  {
+    "firstName": "Chuck", "lastName": "Jewett", "email": "chuck@hullbrothersroofing.com",
+    "phone": "+13105531999", "companyName": "hull brothers roofing", "businessName": "",
+    "companySize": "7", "annualRevenue": "",
+    "companyCity": "Culver City", "companyState": "California", "companyCountry": "United States",
+    "personCity": "Los Angeles", "personState": "California", "personCountry": "United States",
+    "email_variant": "", "send_ready": "no",
+    "hold_reason": "contact looks stale: BBB lists Ashot Dallakyan as current president and ceo, and reviews refer to Chuck as the former owner. evidence for both variables is strong (reviews praise proactive updates, hours are weekday only) so this is worth re-running against a current decision maker rather than dropping.",
+    "reviewDetail": "", "observedResponseGap": ""
+  }
+]
