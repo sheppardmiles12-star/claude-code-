@@ -107,16 +107,47 @@ took a further 3 of 18 in this batch.
 
 **Planning number: budget about three 100-lead runs per 100 send-ready leads.**
 
-### Volume is probably fine, but it is unconfirmed
+### Volume: measured, and it is a non-issue
 
-The nationwide roofing pool was 7,120 before the trade excludes. The post-exclude
-pool was never counted, because a free count consumes the cursor for that
-fingerprint and the batch was going ahead regardless. So the honest position is:
-45% of what run 2 returned was deliverable, and nothing yet measures the verified
-pool directly.
+Three free `countOnly` probes, all on throwaway keywords so the v4 cursor stays
+untouched (a count consumes the cursor for the exact filter set it runs on):
 
-Run a `countOnly: true` check on the v4 filter set **using a deliberately
-different keyword** before committing to a multi-run batch. If the verified pool
-comes back comfortably above a few hundred, volume is a non-issue and no pool
-change is needed. If it comes back thin, the levers in preference order are a
-second trade or a second geography, not relaxing verified.
+| Probe | Filters | Count |
+|---|---|---|
+| `roofing`, no excludes, no verified | run 1 baseline | 7,120 |
+| `roofing` + trade excludes, no verified | v3 fingerprint | **3,411** |
+| `roofer` + trade excludes, no verified | ratio denominator | 68 |
+| `roofer` + trade excludes + verified | ratio numerator | 30 |
+
+The verified share on the probe keyword is 30/68 = **44%**, which lands on top of
+the 45% deliverable actually observed across run 2's 100 rows. Two independent
+measurements agreeing means the ratio is trustworthy.
+
+Applying it to the measured post-exclude pool: the v4 pool is roughly
+**3,411 x 0.44 = 1,500 verified leads**. At the ~30% end-to-end yield that is
+about 450 send-ready leads before the pool is exhausted.
+
+**So no pool change and no bounce tolerance is needed.** Volume was the open
+risk on this decision and it is now closed.
+
+### The gate should now pass on trade purity alone
+
+With verified moved upstream, every returned row satisfies the email half of the
+ICP by construction, so the gate reduces to a pure trade-purity test. Run 2's
+trade purity across the whole sample was only 13/20, which would fail.
+
+But trade purity and deliverability turn out to be correlated. Scoring the trade
+half of the ICP against just the 45 deliverable rows in run 2:
+
+| | Count |
+|---|---|
+| Deliverable rows | 45 |
+| of those, roofing is the primary trade | **37** |
+
+37/45 = **82%**, comfortably over the 75% threshold. Real operating contractors
+own their domain and have real mailboxes; the co-ops, permit expediters, sheet
+metal fabricators and spray foam portals that survived the keyword excludes are
+disproportionately the ones on catch-all or unavailable addresses, so filtering
+on verified removes them as a side effect.
+
+Prediction going into the v4 run: gate passes somewhere near 80%.
