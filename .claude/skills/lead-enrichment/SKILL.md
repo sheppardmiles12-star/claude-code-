@@ -154,8 +154,14 @@ against it.
 firstName, lastName, email, phone, companyName, businessName, companySize,
 annualRevenue, companyCity, companyState, companyCountry, personCity,
 personState, personCountry, email_variant, send_ready, hold_reason,
-reviewDetail, painPointOpener, observedResponseGap
+reviewDetail, painPointOpener, observedResponseGap, subject, emailBody
 ```
+
+`subject` and `emailBody` are rendered by the script from the variables and the
+template above, not written by hand. That keeps the sent message and the
+variables from ever disagreeing: fix a wording problem in the template and every
+row follows. Held rows get both left empty so a bad row cannot be sent by
+accident.
 
 Then run the validator and fix anything it flags before showing the user:
 

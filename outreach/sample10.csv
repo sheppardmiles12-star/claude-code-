@@ -1,11 +1,53 @@
-firstName,lastName,email,phone,companyName,businessName,companySize,annualRevenue,companyCity,companyState,companyCountry,personCity,personState,personCountry,email_variant,send_ready,hold_reason,reviewDetail,painPointOpener,observedResponseGap
-Rich,Lopez,richlopez@affordableroofcare.com,,affordable roof care,Affordable Roof Care,1,,Port Orchard,Washington,United States,Port Orchard,Washington,United States,,no,facebook lists the business as permanently closed; verify it is still trading before any send,,,
-Mark,Carpenter,mark@empireroofcoatings.com,+15092307262,Empire Roof Coatings,Empire Roof Coatings,2,1000000,Mica,Washington,United States,"chattaroy, washington, united states",,United States,standard,yes,,someone said they'd called a bunch of companies for a bid and you were the first one to actually get back to them,,"the only ways in are a phone number, a gmail address and the form on your contact page, so a building manager who spots a leak sunday morning has nowhere to land"
-Kade,Holtzlander,kade@holtzlanderroofing.com,+13606071557,holtzlander roofing and services,Holtzlander Roofing,5,1000000,Vancouver,Washington,United States,Portland,Oregon,United States,standard,yes,,a customer of twelve years said youve always been upfront with them on cost and turned up when you said you would,,"a phone number and an email address are the whole contact surface, and both stop being watched at 4"
-Amber,Hamilton,amber@sqiinc.com,+12064035023,sqi inc. commercial roofing,SQI,30,1100000,mukilteo,Washington,United States,"bothell, washington, united states",Washington,United States,standard,yes,,whoever wrote it said you were easy to communicate with and fast with it,,"you advertise 24/7 emergency service but the office itself runs 7 to 5 on weekdays and goes dark all weekend, so the two dont quite line up"
-Jim,Rohletter,jim@westernmetalproducts.com,+18012985880,Western Metal Products,Western Metal Products,3,300000,Snohomish,Washington,United States,Woods Cross,Utah,United States,,no,no customer reviews and no posted hours found; architectural sheet metal fabricator rather than a contractor taking inbound service calls,,,
-Connor,Valentine,connor@valentineroof.com,+14258774297,valentine roofing,Valentine Roofing,13,1300000,Seattle,Washington,United States,Seattle,Washington,United States,standard,yes,,"a homeowner said your foreman updated them every single day, weekends included",,your emergency page promises 24/7 but the thing actually catching a 2am call is a voicemail box that somebody has to listen to before anyone calls back
-Steven,Heller,steven@valentineroof.com,+14253065044,Valentine Roofing,Valentine Roofing,13,1300000,Seattle,Washington,United States,Maple Valley,Washington,United States,standard,yes,,one review mentioned your foreman was flagging weather delays by 8 in the morning so nobody was left guessing,,"theres a 24/7 emergency promise on the site and a voicemail box sitting behind it, which is a lot of weight to put on whoever checks it first in the morning"
-John,Herzog,johnherzog@america1stroofing.com,+14259997663,america 1st roofing  builders inc,America 1st Roofing & Builders,8,,Mukilteo,Washington,United States,Mukilteo,Washington,United States,,no,"2.6 star average and the complaints are about workmanship, which the rules exclude; no communication or response-speed review available either way",,,
-Richard,Thome,richard@soundbuildingsupply.com,+14252640264,Sound Building Supply Inc.,Sound Building Supply,3,300000,Renton,Washington,United States,Renton,Washington,United States,,no,"re-checked on this run: the gap is strong (their own line that anyone who picks up the phone can help you, against posted hours of 7 to 5) but the reviews still only praise service and warranty generally, nothing on communication or response speed",,,
-James,Tedrick,jim@tedricksroofing.com,+18772129355,tedricks roofing,Tedrick's Roofing,7,700000,Auburn,Washington,United States,"seattle, washington, united states",,United States,negative_review,yes,,,"read through your reviews and a couple of them point at things taking a while to come back, which usually says process rather than anything else","the office runs 8 to 5 on weekdays, so an evening or a weekend enquiry is already waiting before anyone has even seen it"
+firstName,lastName,email,phone,companyName,businessName,companySize,annualRevenue,companyCity,companyState,companyCountry,personCity,personState,personCountry,email_variant,send_ready,hold_reason,reviewDetail,painPointOpener,observedResponseGap,subject,emailBody
+Rich,Lopez,richlopez@affordableroofcare.com,,affordable roof care,Affordable Roof Care,1,,Port Orchard,Washington,United States,Port Orchard,Washington,United States,,no,facebook lists the business as permanently closed; verify it is still trading before any send,,,,,
+Mark,Carpenter,mark@empireroofcoatings.com,+15092307262,Empire Roof Coatings,Empire Roof Coatings,2,1000000,Mica,Washington,United States,"chattaroy, washington, united states",,United States,standard,yes,,someone said they'd called a bunch of companies for a bid and you were the first one to actually get back to them,,"the only ways in are a phone number, a gmail address and the form on your contact page, so a building manager who spots a leak sunday morning has nowhere to land",Mark,"heyy Mark, 
+
+saw Empire Roof Coatings recent review where someone said they'd called a bunch of companies for a bid and you were the first one to actually get back to them, and wanted to say hi.
+
+i run a b2b automation agency where i catch the calls/leads that come in after hours or via form so they dont just sit there til someone gets around to it. figured worth a shot since the only ways in are a phone number, a gmail address and the form on your contact page, so a building manager who spots a leak sunday morning has nowhere to land.
+
+ive done my homework on you guys and believe i can help out Empire Roof Coatings. are you open to finding out more? if so it'd take no more than 15 min over the phone to break it down for you.
+miles"
+Kade,Holtzlander,kade@holtzlanderroofing.com,+13606071557,holtzlander roofing and services,Holtzlander Roofing,5,1000000,Vancouver,Washington,United States,Portland,Oregon,United States,standard,yes,,a customer of twelve years said youve always been upfront with them on cost and turned up when you said you would,,"a phone number and an email address are the whole contact surface, and both stop being watched at 4",Kade,"heyy Kade, 
+
+saw Holtzlander Roofing recent review where a customer of twelve years said youve always been upfront with them on cost and turned up when you said you would, and wanted to say hi.
+
+i run a b2b automation agency where i catch the calls/leads that come in after hours or via form so they dont just sit there til someone gets around to it. figured worth a shot since a phone number and an email address are the whole contact surface, and both stop being watched at 4.
+
+ive done my homework on you guys and believe i can help out Holtzlander Roofing. are you open to finding out more? if so it'd take no more than 15 min over the phone to break it down for you.
+miles"
+Amber,Hamilton,amber@sqiinc.com,+12064035023,sqi inc. commercial roofing,SQI,30,1100000,mukilteo,Washington,United States,"bothell, washington, united states",Washington,United States,standard,yes,,whoever wrote it said you were easy to communicate with and fast with it,,"you advertise 24/7 emergency service but the office itself runs 7 to 5 on weekdays and goes dark all weekend, so the two dont quite line up",Amber,"heyy Amber, 
+
+saw SQI recent review where whoever wrote it said you were easy to communicate with and fast with it, and wanted to say hi.
+
+i run a b2b automation agency where i catch the calls/leads that come in after hours or via form so they dont just sit there til someone gets around to it. figured worth a shot since you advertise 24/7 emergency service but the office itself runs 7 to 5 on weekdays and goes dark all weekend, so the two dont quite line up.
+
+ive done my homework on you guys and believe i can help out SQI. are you open to finding out more? if so it'd take no more than 15 min over the phone to break it down for you.
+miles"
+Jim,Rohletter,jim@westernmetalproducts.com,+18012985880,Western Metal Products,Western Metal Products,3,300000,Snohomish,Washington,United States,Woods Cross,Utah,United States,,no,no customer reviews and no posted hours found; architectural sheet metal fabricator rather than a contractor taking inbound service calls,,,,,
+Connor,Valentine,connor@valentineroof.com,+14258774297,valentine roofing,Valentine Roofing,13,1300000,Seattle,Washington,United States,Seattle,Washington,United States,standard,yes,,"a homeowner said your foreman updated them every single day, weekends included",,your emergency page promises 24/7 but the thing actually catching a 2am call is a voicemail box that somebody has to listen to before anyone calls back,Connor,"heyy Connor, 
+
+saw Valentine Roofing recent review where a homeowner said your foreman updated them every single day, weekends included, and wanted to say hi.
+
+i run a b2b automation agency where i catch the calls/leads that come in after hours or via form so they dont just sit there til someone gets around to it. figured worth a shot since your emergency page promises 24/7 but the thing actually catching a 2am call is a voicemail box that somebody has to listen to before anyone calls back.
+
+ive done my homework on you guys and believe i can help out Valentine Roofing. are you open to finding out more? if so it'd take no more than 15 min over the phone to break it down for you.
+miles"
+Steven,Heller,steven@valentineroof.com,+14253065044,Valentine Roofing,Valentine Roofing,13,1300000,Seattle,Washington,United States,Maple Valley,Washington,United States,standard,yes,,one review mentioned your foreman was flagging weather delays by 8 in the morning so nobody was left guessing,,"theres a 24/7 emergency promise on the site and a voicemail box sitting behind it, which is a lot of weight to put on whoever checks it first in the morning",Steven,"heyy Steven, 
+
+saw Valentine Roofing recent review where one review mentioned your foreman was flagging weather delays by 8 in the morning so nobody was left guessing, and wanted to say hi.
+
+i run a b2b automation agency where i catch the calls/leads that come in after hours or via form so they dont just sit there til someone gets around to it. figured worth a shot since theres a 24/7 emergency promise on the site and a voicemail box sitting behind it, which is a lot of weight to put on whoever checks it first in the morning.
+
+ive done my homework on you guys and believe i can help out Valentine Roofing. are you open to finding out more? if so it'd take no more than 15 min over the phone to break it down for you.
+miles"
+John,Herzog,johnherzog@america1stroofing.com,+14259997663,america 1st roofing  builders inc,America 1st Roofing & Builders,8,,Mukilteo,Washington,United States,Mukilteo,Washington,United States,,no,"2.6 star average and the complaints are about workmanship, which the rules exclude; no communication or response-speed review available either way",,,,,
+Richard,Thome,richard@soundbuildingsupply.com,+14252640264,Sound Building Supply Inc.,Sound Building Supply,3,300000,Renton,Washington,United States,Renton,Washington,United States,,no,"re-checked on this run: the gap is strong (their own line that anyone who picks up the phone can help you, against posted hours of 7 to 5) but the reviews still only praise service and warranty generally, nothing on communication or response speed",,,,,
+James,Tedrick,jim@tedricksroofing.com,+18772129355,tedricks roofing,Tedrick's Roofing,7,700000,Auburn,Washington,United States,"seattle, washington, united states",,United States,negative_review,yes,,,"read through your reviews and a couple of them point at things taking a while to come back, which usually says process rather than anything else","the office runs 8 to 5 on weekdays, so an evening or a weekend enquiry is already waiting before anyone has even seen it",James,"heyy James, 
+
+read through your reviews and a couple of them point at things taking a while to come back, which usually says process rather than anything else.
+
+i run a b2b automation agency where i catch the calls/leads that come in after hours or via form so they dont just sit there til someone gets around to it. figured worth a shot since the office runs 8 to 5 on weekdays, so an evening or a weekend enquiry is already waiting before anyone has even seen it.
+
+ive done my homework on you guys and believe i can help out Tedrick's Roofing. are you open to finding out more? if so it'd take no more than 15 min over the phone to break it down for you.
+miles"

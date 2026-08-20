@@ -12,10 +12,32 @@ import argparse, collections, csv, json, re, sys
 COLUMNS = ["firstName", "lastName", "email", "phone", "companyName", "businessName",
            "companySize", "annualRevenue", "companyCity", "companyState", "companyCountry",
            "personCity", "personState", "personCountry", "email_variant", "send_ready",
-           "hold_reason", "reviewDetail", "painPointOpener", "observedResponseGap"]
+           "hold_reason", "reviewDetail", "painPointOpener", "observedResponseGap",
+           "subject", "emailBody"]
 
 VARIABLE_COLS = ["businessName", "reviewDetail", "painPointOpener", "observedResponseGap"]
-DASHES = ["—", "–"]
+DASHES = ["\u2014", "\u2013"]
+
+# The body is rendered here rather than written by hand so the CSV can never
+# drift from the template. Change the wording in one place and every row follows.
+BODY_TAIL = (
+    "\n\ni run a b2b automation agency where i catch the calls/leads that come in after "
+    "hours or via form so they dont just sit there til someone gets around to it. figured "
+    "worth a shot since {observedResponseGap}.\n\nive done my homework on you guys and "
+    "believe i can help out {businessName}. are you open to finding out more? if so it'd "
+    "take no more than 15 min over the phone to break it down for you.\nmiles"
+)
+STANDARD = "heyy {firstName}, \n\nsaw {businessName} recent review where {reviewDetail}, and wanted to say hi." + BODY_TAIL
+NEGATIVE = "heyy {firstName}, \n\n{painPointOpener}." + BODY_TAIL
+
+
+def render(row):
+    """Return (subject, body) for a row, or ("", "") when the row is held."""
+    if row.get("send_ready") != "yes":
+        return "", ""
+    tpl = NEGATIVE if row.get("email_variant") == "negative_review" else STANDARD
+    return row.get("firstName", ""), tpl.format(**{k: row.get(k, "") for k in
+        ("firstName", "businessName", "reviewDetail", "painPointOpener", "observedResponseGap")})
 
 
 def emit(rows, out_path):
@@ -23,7 +45,9 @@ def emit(rows, out_path):
         w = csv.DictWriter(fh, fieldnames=COLUMNS, extrasaction="ignore")
         w.writeheader()
         for r in rows:
-            w.writerow({c: (r.get(c) or "") for c in COLUMNS})
+            out = {c: (r.get(c) or "") for c in COLUMNS}
+            out["subject"], out["emailBody"] = render(r)
+            w.writerow(out)
     return out_path
 
 
@@ -62,11 +86,24 @@ def validate(path):
                     problems.append(f"{who}: negative_review variant should not set reviewDetail")
             else:
                 problems.append(f"{who}: send_ready but email_variant is '{variant}'")
+
+            body = r.get("emailBody") or ""
+            if not body:
+                problems.append(f"{who}: send_ready but emailBody is empty")
+            if "{" in body or "}" in body:
+                problems.append(f"{who}: emailBody has an unreplaced placeholder")
+            for d in DASHES:
+                if d in body:
+                    problems.append(f"{who}: emailBody contains a dash character")
+            if r.get("subject") != r.get("firstName"):
+                problems.append(f"{who}: subject should be the contact first name")
         elif r.get("send_ready") == "no":
             if not r.get("hold_reason"):
                 problems.append(f"{who}: held with no hold_reason")
             if r.get("reviewDetail") or r.get("painPointOpener") or r.get("observedResponseGap"):
                 problems.append(f"{who}: held but still carries variable text")
+            if r.get("emailBody") or r.get("subject"):
+                problems.append(f"{who}: held but still carries a rendered email")
         else:
             problems.append(f"{who}: send_ready must be yes or no")
 
