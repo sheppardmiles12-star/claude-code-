@@ -151,3 +151,58 @@ disproportionately the ones on catch-all or unavailable addresses, so filtering
 on verified removes them as a side effect.
 
 Prediction going into the v4 run: gate passes somewhere near 80%.
+
+## Run 3 — `roofing_us_v4_verified_only.json`
+
+- Run `bwguYmwiKeE5CWK4w`, dataset `7lappYfZaquaAV1PC`, 100 leads billed.
+- Verified pool measured directly: **1,371** (`totalLeadsInSearch`), against the
+  1,500 projected from the probe ratio. The projection held.
+- **Gate: 11/20 (55%). FAIL.**
+
+The 82% prediction above was wrong, and the reason matters more than the miss.
+
+### Adding a filter reset the cursor
+
+`emailStatusIncludes` changed the search fingerprint, so the saved cursor went
+back to position 0 and the run re-served the verified subset of ground already
+covered:
+
+| | Count |
+|---|---|
+| Rows returned | 100 |
+| Unique companies | 91 |
+| Already scraped in run 1 or 2 | **61** |
+| Net new companies | **30** |
+
+All 20 rows in the gate sample are re-serves. They are the verified survivors of
+runs 1 and 2, which is exactly the population that still contains the known
+misses: Meta Team, Viirt, RoofAdvisor, YINC, Fluid Applied Roofing, Swenson
+Shear, South Coast Shingle, Levi's Building Components. The 82% figure was
+computed on run 2's deliverable rows as a whole; the head of a reset cursor is
+not that sample, so the prediction never applied to what the gate actually read.
+
+Net-new companies only start appearing around offset 65. Scoring the trade half
+of the ICP against just those 30 gives roughly 18 in ICP, about 60%: better than
+the head, still short of 75%.
+
+**This run was largely paid re-serve.** 100 leads billed, 30 new companies. That
+is the one-time cost of changing the filter set, and it is worth knowing before
+the next niche gets a new filter.
+
+### Where that leaves the next run
+
+The v4 cursor now sits at 100 with **1,271 remaining**, all of it unscraped. The
+next v4 run enters fresh territory rather than re-serving, so it is the first
+honest test of this filter set. Gate that run before enriching anything from it.
+
+Two things to carry forward:
+
+- **Changing any filter resets the cursor.** Budget one mostly-wasted run
+  whenever the filter set changes on a niche that has already been scraped, or
+  skip the overlap with `customOffset`.
+- **The trade excludes still leak.** Manufacturers and suppliers survive because
+  they describe themselves in roofing language: Brava Roof Tile manufactures
+  tile, Vermont Slate sells slate, Swenson Shear sells tooling. `manufacturer`
+  and `supply` do not appear in their copy. If the next gate fails on the fresh
+  slice too, the lever is `companyNameIncludes` rather than more excludes, since
+  operating contractors nearly always carry the trade in the company name.
