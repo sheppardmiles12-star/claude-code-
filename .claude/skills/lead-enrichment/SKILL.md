@@ -86,6 +86,10 @@ cold domain, so it is worth a mention when a batch looks heavily unverified.
 
 ### Validate filters before spending
 
+There is also a browser-based Lead Viewer at `https://viewer.pipelinelabs.dev`
+that shows a live match count and exports the exact JSON. Point the user at it
+when the MCP connector is unavailable, since it needs no tooling on this side.
+
 `countOnly: true` runs a free count: no extraction, no charge. Use it to check a
 filter set returns a sane number before any paid run. Filters that are too
 narrow return zero and burn the run for nothing.
@@ -112,6 +116,32 @@ The user's definition, applied in the 20-lead sample and in any filter revision:
 
 Email verification is judged here rather than filtered upstream, because the
 user does not want `emailStatus` narrowing the pool.
+
+### Plan limits and the progress cursor
+
+The free tier caps a run at **100 leads**; paid tiers go to 50,000. So on free,
+100 is a ceiling rather than a floor, and a pool larger than 100 needs several
+runs rather than one big one.
+
+Progress is saved **per filter set**: an identical rerun continues where the last
+one stopped, which is what stops you paying twice for the same lead. The catch
+is that changing any filter makes it a different search, so a widened filter set
+starts from the beginning again and will re-serve leads already pulled under the
+old filters. Widening is therefore not free even when the count is: expect
+overlap and dedupe locally.
+
+Always dedupe new results against previously enriched batches on `email`, and
+on `companyDomain` for the company-level research. `scripts/dedupe_leads.py`
+does this. Re-enriching a company already researched wastes roughly two web
+searches and buys nothing.
+
+### Judging email quality
+
+The output field `emailStatus` carries `deliverable` for a good address. Note
+the actor's own docs disagree with themselves on the *input* enum (the filter
+table lists `deliverable / catch_all / pattern_match`, the examples use
+`verified / unverified`), which is one reason not to filter on it. Judge the
+output value instead, during the 20-lead sample.
 
 ### Check the pool size before scraping
 
