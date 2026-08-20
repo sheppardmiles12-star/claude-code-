@@ -1,0 +1,32 @@
+{
+  "companyKeywordIncludes": [
+    "roofing"
+  ],
+  "personTitleIncludes": [
+    "founder",
+    "co-founder",
+    "cofounder",
+    "owner",
+    "co-owner",
+    "partner",
+    "co-partner",
+    "president",
+    "ceo",
+    "general manager",
+    "director"
+  ],
+  "seniorityIncludes": [
+    "owner",
+    "c_suite",
+    "partner",
+    "director"
+  ],
+  "includeTitleVariants": true,
+  "roleMatchMode": "any",
+  "companyEmployeeMin": 1,
+  "companyEmployeeMax": 30,
+  "companyLocationCountryIncludes": [
+    "United States"
+  ],
+  "totalResults": 100
+}
