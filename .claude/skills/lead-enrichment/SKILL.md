@@ -33,17 +33,17 @@ miles
 ```
 
 **Negative-review variant** (only when no usable positive review exists). The
-opener structure changes, not just one variable, because "wanted to say hi"
-doesn't pair with pointing out a problem:
+framing around the variable changes, not just the variable, because "wanted to
+say hi" doesn't pair with pointing out a problem. Note the greeting runs inline
+here and the signoff sits on its own line:
 
 ```
-heyy {{firstName}}, 
-
-{{painPointOpener}}.
+heyy {{firstName}}, read through {{businessName}} reviews {{reviewDetail}}.
 
 i run a b2b automation agency where i catch the calls/leads that come in after hours or via form so they dont just sit there til someone gets around to it. figured worth a shot since {{observedResponseGap}}.
 
 ive done my homework on you guys and believe i can help out {{businessName}}. are you open to finding out more? if so it'd take no more than 15 min over the phone to break it down for you.
+
 miles
 ```
 
@@ -93,8 +93,10 @@ are usually lowercased ("anytime roofing") which reads badly mid-sentence, and
 long legal names ("SQI Inc Roofing and Restoration") get clunky when the
 template repeats them twice. Shorten to the spoken form.
 
-`reviewDetail`, completes "saw {{businessName}} recent review where ___". Full
-casual clause, not a fragment.
+`reviewDetail`, the one variable both variants share, so what it has to complete
+depends on which one the row is using. Standard: "saw {{businessName}} recent
+review where ___". Negative: "read through {{businessName}} reviews ___". Full
+casual clause either way, not a fragment.
 
 `observedResponseGap`, completes "figured worth a shot since ___". Must trace
 to Evidence B.
@@ -110,17 +112,19 @@ Only skip the hours angle entirely when there are no posted hours, no
 availability claim, and no contact-mechanism evidence at all. Then the row gets
 held.
 
-`painPointOpener`, negative variant only. Frame the finding as a fixable cost,
-never a personal callout. "This is costing you something," not "you're bad at
-this." No quoting the complaint, no naming the customer or incident.
+On a negative row, frame the finding as a fixable cost, never a personal
+callout. "This is costing you something," not "you're bad at this." No quoting
+the complaint, no naming the customer or incident. The template already supplies
+"read through {{businessName}} reviews", so the variable picks up from there,
+which is why the negative form usually wants a connector like "and" up front.
 
-- Good: "noticed a few reviews mentioning slower response times, and it looked like something worth flagging."
-- Good: "read through your reviews and it looks like response time might be costing you a job here and there."
-- Bad: "saw you are having trouble with responding to people." Reads as judgment about them rather than about a process.
+- Good: "and a couple of them point at things taking a while to come back, which usually says process rather than anything else"
+- Good: "and it looks like response time might be costing you a job here and there"
+- Bad: "and you are clearly bad at responding to people". Reads as judgment about them rather than about a process.
 
-On negative rows `painPointOpener` and `observedResponseGap` will often point at
+On negative rows `reviewDetail` and `observedResponseGap` will often point at
 the same underlying gap. Don't say it twice. Let the opener carry the point and
-keep the gap to concrete evidence, hours, contact mechanism, rather than
+keep the gap to concrete evidence, hours or contact mechanism, rather than
 repeating "people said you're slow".
 
 ### 4. Voice
@@ -154,7 +158,7 @@ against it.
 firstName, lastName, email, phone, companyName, businessName, companySize,
 annualRevenue, companyCity, companyState, companyCountry, personCity,
 personState, personCountry, email_variant, send_ready, hold_reason,
-reviewDetail, painPointOpener, observedResponseGap, subject, emailBody
+reviewDetail, observedResponseGap, subject, emailBody
 ```
 
 `subject` and `emailBody` are rendered by the script from the variables and the

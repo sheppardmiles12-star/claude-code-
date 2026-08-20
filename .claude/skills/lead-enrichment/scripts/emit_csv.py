@@ -12,23 +12,28 @@ import argparse, collections, csv, json, re, sys
 COLUMNS = ["firstName", "lastName", "email", "phone", "companyName", "businessName",
            "companySize", "annualRevenue", "companyCity", "companyState", "companyCountry",
            "personCity", "personState", "personCountry", "email_variant", "send_ready",
-           "hold_reason", "reviewDetail", "painPointOpener", "observedResponseGap",
+           "hold_reason", "reviewDetail", "observedResponseGap",
            "subject", "emailBody"]
 
-VARIABLE_COLS = ["businessName", "reviewDetail", "painPointOpener", "observedResponseGap"]
+VARIABLE_COLS = ["businessName", "reviewDetail", "observedResponseGap"]
 DASHES = ["\u2014", "\u2013"]
 
 # The body is rendered here rather than written by hand so the CSV can never
 # drift from the template. Change the wording in one place and every row follows.
-BODY_TAIL = (
+MIDDLE = (
     "\n\ni run a b2b automation agency where i catch the calls/leads that come in after "
     "hours or via form so they dont just sit there til someone gets around to it. figured "
     "worth a shot since {observedResponseGap}.\n\nive done my homework on you guys and "
     "believe i can help out {businessName}. are you open to finding out more? if so it'd "
-    "take no more than 15 min over the phone to break it down for you.\nmiles"
+    "take no more than 15 min over the phone to break it down for you."
 )
-STANDARD = "heyy {firstName}, \n\nsaw {businessName} recent review where {reviewDetail}, and wanted to say hi." + BODY_TAIL
-NEGATIVE = "heyy {firstName}, \n\n{painPointOpener}." + BODY_TAIL
+# Both variants open on reviewDetail; the difference is the framing around it.
+# Standard points at a compliment, negative points at a fixable gap, so the
+# greeting runs inline and the signoff sits off on its own.
+STANDARD = ("heyy {firstName}, \n\nsaw {businessName} recent review where {reviewDetail}, "
+            "and wanted to say hi." + MIDDLE + "\nmiles")
+NEGATIVE = ("heyy {firstName}, read through {businessName} reviews {reviewDetail}."
+            + MIDDLE + "\n\nmiles")
 
 
 def render(row):
@@ -37,7 +42,7 @@ def render(row):
         return "", ""
     tpl = NEGATIVE if row.get("email_variant") == "negative_review" else STANDARD
     return row.get("firstName", ""), tpl.format(**{k: row.get(k, "") for k in
-        ("firstName", "businessName", "reviewDetail", "painPointOpener", "observedResponseGap")})
+        ("firstName", "businessName", "reviewDetail", "observedResponseGap")})
 
 
 def emit(rows, out_path):
@@ -74,16 +79,9 @@ def validate(path):
             if not r.get("businessName"):
                 problems.append(f"{who}: send_ready but businessName is empty")
             variant = r.get("email_variant")
-            if variant == "standard":
+            if variant in ("standard", "negative_review"):
                 if not r.get("reviewDetail"):
-                    problems.append(f"{who}: standard variant but reviewDetail is empty")
-                if r.get("painPointOpener"):
-                    problems.append(f"{who}: standard variant should not set painPointOpener")
-            elif variant == "negative_review":
-                if not r.get("painPointOpener"):
-                    problems.append(f"{who}: negative_review variant but painPointOpener is empty")
-                if r.get("reviewDetail"):
-                    problems.append(f"{who}: negative_review variant should not set reviewDetail")
+                    problems.append(f"{who}: {variant} variant but reviewDetail is empty")
             else:
                 problems.append(f"{who}: send_ready but email_variant is '{variant}'")
 
@@ -100,7 +98,7 @@ def validate(path):
         elif r.get("send_ready") == "no":
             if not r.get("hold_reason"):
                 problems.append(f"{who}: held with no hold_reason")
-            if r.get("reviewDetail") or r.get("painPointOpener") or r.get("observedResponseGap"):
+            if r.get("reviewDetail") or r.get("observedResponseGap"):
                 problems.append(f"{who}: held but still carries variable text")
             if r.get("emailBody") or r.get("subject"):
                 problems.append(f"{who}: held but still carries a rendered email")
