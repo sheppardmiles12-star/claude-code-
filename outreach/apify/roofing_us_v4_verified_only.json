@@ -1,0 +1,67 @@
+{
+  "companyKeywordIncludes": [
+    "roofing"
+  ],
+  "companyKeywordExcludes": [
+    "manufacturing",
+    "manufacturer",
+    "supply",
+    "distributor",
+    "wholesale",
+    "staffing",
+    "recruiting",
+    "insurance",
+    "adjuster",
+    "software",
+    "engineering",
+    "real estate",
+    "property management",
+    "landscap",
+    "turf",
+    "solar",
+    "siding",
+    "window",
+    "gutter",
+    "remodeling",
+    "remodel",
+    "painting",
+    "exteriors",
+    "restoration",
+    "consulting",
+    "consultant",
+    "coatings",
+    "adhesive",
+    "lumber",
+    "marketing"
+  ],
+  "emailStatusIncludes": [
+    "verified"
+  ],
+  "personTitleIncludes": [
+    "founder",
+    "co-founder",
+    "cofounder",
+    "owner",
+    "co-owner",
+    "partner",
+    "co-partner",
+    "president",
+    "ceo",
+    "general manager",
+    "director"
+  ],
+  "seniorityIncludes": [
+    "owner",
+    "c_suite",
+    "partner",
+    "director"
+  ],
+  "includeTitleVariants": true,
+  "roleMatchMode": "any",
+  "companyEmployeeMin": 1,
+  "companyEmployeeMax": 30,
+  "companyLocationCountryIncludes": [
+    "United States"
+  ],
+  "totalResults": 100
+}

@@ -73,16 +73,25 @@ quietly wastes their money, so follow them and say so if you think one is wrong.
 
 **Do not use unless the user explicitly asks:**
 - `annualRevenue*` , revenue banding
-- `emailStatus*` , email verification
 - `companyIndustry*` , industry
 - `companyLocation*` , location
 
-Location is currently an explicit exception: **Washington state only**, so
-`companyLocationStateIncludes: ["Washington"]` applies until told otherwise.
+Two standing exceptions, both granted explicitly:
 
-Leaving `emailStatus` unfiltered means unverified addresses come through. That
-is the user's call and it does raise volume, but it also raises bounce rate on a
-cold domain, so it is worth a mention when a batch looks heavily unverified.
+- **Email status: verified only.** `emailStatusIncludes: ["verified"]` applies
+  until told otherwise. In this actor `verified` means confirmed deliverable and
+  `unverified` lumps together pattern match, unavailable and catch all, which is
+  exactly the split the ICP cares about. The user chose stricter, cleaner sends
+  over volume, so do not relax this to raise a thin batch.
+- **Location.** `companyLocationStateIncludes: ["Washington"]` applies until told
+  otherwise. Nationwide roofing was run as a deliberate one off, so confirm the
+  geography rather than inheriting it from the last batch.
+
+Filtering on verified costs real volume, so plan the pool around it rather than
+discovering it late. On the nationwide roofing scrape only 45 of 100 rows came
+back deliverable, and once the multi-trade and supplier rows were dropped the
+end to end yield was closer to 30 percent. Budget roughly three runs per 100
+send-ready leads and say so before scraping, not after.
 
 ### Validate filters before spending
 
@@ -134,9 +143,11 @@ any filter revision:
   employee. The email is real and verified, not guessed or an unrelated personal
   address.
 
-Email verification is judged here rather than filtered upstream, because the
-user does not want `emailStatus` narrowing the pool. In the output data,
-`emailStatus: deliverable` is the good value.
+Email verification is now filtered upstream via `emailStatusIncludes:
+["verified"]`, so the sample should come back clean on this half. Still check it
+rather than assuming: in the output data `emailStatus: deliverable` is the good
+value, and anything else in a supposedly verified batch means the filter did not
+apply and the run needs rechecking before enrichment.
 
 The "primary trade" half is what the sample usually turns on, and it bites
 differently per niche. Roofing pulls in multi-trade exteriors firms; electrical
@@ -186,8 +197,11 @@ early keeps the sample score high.
    tuning will not fix an exhausted market. Offer a second state, a second
    trade, or a smaller batch, and let the user choose.
 
-Never widen by re-enabling a filter the user turned off (revenue, email status,
-industry) or by quietly expanding geography. Those are policy, not tuning.
+Never widen by re-enabling a filter the user turned off (revenue, industry), by
+dropping `emailStatusIncludes: ["verified"]`, or by quietly expanding geography.
+Those are policy, not tuning. Dropping verified is the tempting one because it
+roughly doubles the pool in a single edit; it is also the exact trade the user
+declined.
 
 ### The ICP quality gate
 

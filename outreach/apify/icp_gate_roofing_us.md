@@ -76,3 +76,47 @@ Independent of the gate, run 2 carries a lot of field-level noise:
 - **Company vs person geography contradicts**: Giles Construction (company GA,
   person OH), Jack the Roofer (company CO, description Southern California),
   Quality Assurance Roofing (company TX, description NW Arkansas).
+
+## Decision: verified only
+
+Confirmed by the user. `emailStatusIncludes: ["verified"]` is now standing
+policy, staged as `roofing_us_v4_verified_only.json`. The actor's own schema
+defines Verified as "confirmed deliverable" and Unverified as "pattern match,
+unavailable, catch all", which lines up exactly with the ICP's email test, so
+the gate's email half moves upstream into the filter.
+
+### What this costs in volume
+
+Counted across all 100 rows of run 2, not just the 20-lead sample:
+
+| | Count |
+|---|---|
+| Rows returned | 100 |
+| `deliverable` | 45 |
+| `catch_all` | 33 |
+| `unavailable` / `pattern_match` / blank | 22 |
+
+The 20-lead sample happened to show 35% deliverable; the full batch is 45%.
+Either way roughly half the raw pool disappears.
+
+Deliverable alone is not send-ready. Of those 45, a chunk are suppliers and
+services that survived the keyword excludes (sheet metal fabrication, permit
+expediting, spray foam, a marketing agency, a roofing co-op). Applying the trade
+half of the ICP on top lands the end-to-end yield near 30%, and enrichment holds
+took a further 3 of 18 in this batch.
+
+**Planning number: budget about three 100-lead runs per 100 send-ready leads.**
+
+### Volume is probably fine, but it is unconfirmed
+
+The nationwide roofing pool was 7,120 before the trade excludes. The post-exclude
+pool was never counted, because a free count consumes the cursor for that
+fingerprint and the batch was going ahead regardless. So the honest position is:
+45% of what run 2 returned was deliverable, and nothing yet measures the verified
+pool directly.
+
+Run a `countOnly: true` check on the v4 filter set **using a deliberately
+different keyword** before committing to a multi-run batch. If the verified pool
+comes back comfortably above a few hundred, volume is a non-issue and no pool
+change is needed. If it comes back thin, the levers in preference order are a
+second trade or a second geography, not relaxing verified.
