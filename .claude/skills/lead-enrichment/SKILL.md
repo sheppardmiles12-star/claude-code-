@@ -126,6 +126,32 @@ Also watch for overlap with leads already enriched. A pool this size will mostly
 return the same companies as last time, so check new results against prior
 batches before paying to enrich them again.
 
+### Widening a pool that is too thin
+
+Work the levers in this order, re-running the free count at each step and
+stopping as soon as the pool is comfortably larger than the target. Order
+matters: each step costs more ICP precision than the one before it, so stopping
+early keeps the sample score high.
+
+1. **Raise `companyEmployeeMax`.** Usually the most restrictive filter and the
+   cheapest to relax, since the user's size band is approximate ("twenty or
+   thirty or so"). Going past about 50 starts pulling in companies big enough to
+   already staff a front desk, which is the opposite of the pitch.
+2. **Drop `personTitleIncludes` and run on `seniorityIncludes` alone.** The
+   free-text title list and the seniority enum filter the same thing twice, and
+   the list can miss variants the enum catches.
+3. **Add keyword variants** (`roofer`, `roof repair`, `roofing contractor`).
+   This widens the most and drifts the most: broader roofing keywords pull in
+   suppliers, manufacturers and multi-trade exteriors firms, which the ICP
+   excludes. Expect the sample score to fall.
+4. **Stop and talk to the user.** If the pool is still thin after the above, the
+   geography or the trade is the binding constraint, not the filters. More
+   tuning will not fix an exhausted market. Offer a second state, a second
+   trade, or a smaller batch, and let the user choose.
+
+Never widen by re-enabling a filter the user turned off (revenue, email status,
+industry) or by quietly expanding geography. Those are policy, not tuning.
+
 ### The ICP quality gate
 
 Scrape quality decides everything downstream, so check it before enriching.

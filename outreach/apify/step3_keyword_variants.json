@@ -1,0 +1,27 @@
+{
+  "companyKeywordIncludes": [
+    "roofing",
+    "roofer",
+    "roof repair",
+    "roofing contractor"
+  ],
+  "seniorityIncludes": [
+    "owner",
+    "c_suite",
+    "partner",
+    "director"
+  ],
+  "includeTitleVariants": true,
+  "roleMatchMode": "any",
+  "companyEmployeeMin": 1,
+  "companyEmployeeMax": 50,
+  "companyLocationStateIncludes": [
+    "Washington"
+  ],
+  "companyLocationCountryIncludes": [
+    "United States"
+  ],
+  "dontSaveProgress": true,
+  "countOnly": true,
+  "waitSecs": 45
+}
