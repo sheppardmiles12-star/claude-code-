@@ -1,6 +1,6 @@
 ---
 name: lead-enrichment
-description: Research a list of B2B leads and write personalized cold-email merge variables for every row, then emit a trimmed send-ready CSV. Use this whenever the user provides leads, a lead list, a lead export, a prospect list, an Apollo/ZoomInfo/Lusha CSV, or a Google Sheet of companies and wants them enriched, personalized, researched, or prepared for cold outreach. Also use it whenever they mention fuzzy variables, AI variables, merge variables, reviewDetail, observedResponseGap, or painPointOpener, or ask to "run the usual flow" / "enrich these" / "do the leads" on a batch of companies. Trigger even when they just paste rows of company data without naming the process.
+description: Scrape B2B leads from Apify and/or research them and write personalized cold-email merge variables for every row, then emit a trimmed send-ready CSV. Use this whenever the user names an ICP to scrape, asks to pull or find leads, or provides leads, a lead list, a lead export, a prospect list, an Apollo/ZoomInfo/Lusha CSV, or a Google Sheet of companies and wants them enriched, personalized, researched, or prepared for cold outreach. Also use it whenever they mention fuzzy variables, AI variables, merge variables, reviewDetail, observedResponseGap, or painPointOpener, or ask to "run the usual flow" / "enrich these" / "do the leads" on a batch of companies. Trigger even when they just paste rows of company data without naming the process.
 ---
 
 # Lead enrichment for cold outreach
@@ -46,6 +46,76 @@ ive done my homework on you guys and believe i can help out {{businessName}}. ar
 
 miles
 ```
+
+## Sourcing leads from Apify
+
+When the user names an ICP rather than handing over a file, scrape it first with
+the Apify actor `pipelinelabs/leads-finder-with-emails-apollo-lusha-zoominfo`
+(there is a dedicated tool for it; no need for `call-actor`). Its output columns
+match the enrichment schema directly.
+
+### Standing filter policy
+
+These are the user's rules, learned from what actually converts. Deviating
+quietly wastes their money, so follow them and say so if you think one is wrong.
+
+**Use:**
+- `companyKeywordIncludes` , the primary targeting lever. Simplest thing that works.
+- `personTitleIncludes` , founder, co-founder, owner, co-owner, partner,
+  co-partner, president, ceo, director. Set `includeTitleVariants: true` so
+  CEO and Chief Executive Officer both match.
+- `seniorityIncludes` , `owner`, `c_suite`, `partner`, `director`. Founder and
+  co-founder have no seniority enum, which is why titles carry them.
+- `roleMatchMode: "any"` , these are alternatives, not requirements.
+- Company size roughly 1 to 30 staff. `companyEmployeeMin: 1` with
+  `companyEmployeeMax: 30` is tighter than the buckets, whose nearest option
+  (`11-50`) overshoots to 50.
+
+**Do not use unless the user explicitly asks:**
+- `annualRevenue*` , revenue banding
+- `emailStatus*` , email verification
+- `companyIndustry*` , industry
+- `companyLocation*` , location
+
+Location is currently an explicit exception: **Washington state only**, so
+`companyLocationStateIncludes: ["Washington"]` applies until told otherwise.
+
+Leaving `emailStatus` unfiltered means unverified addresses come through. That
+is the user's call and it does raise volume, but it also raises bounce rate on a
+cold domain, so it is worth a mention when a batch looks heavily unverified.
+
+### Validate filters before spending
+
+`countOnly: true` runs a free count: no extraction, no charge. Use it to check a
+filter set returns a sane number before any paid run. Filters that are too
+narrow return zero and burn the run for nothing.
+
+Set `dontSaveProgress: true` on validation and test scrapes. The actor keeps a
+cursor between runs, so a throwaway test would otherwise advance past leads the
+real run should have picked up. Leave progress saving on for the accepted final
+run so the next day's pull continues rather than repeating.
+
+`waitSecs` caps at 45 seconds. A 100-lead run usually exceeds that, so poll
+`get-actor-run` until terminal, then pull rows with `get-dataset-items`.
+
+### The ICP quality gate
+
+Scrape quality decides everything downstream, so check it before enriching.
+Enriching a bad scrape burns roughly two web searches per lead on companies the
+user never wanted.
+
+1. Scrape 100 leads (or the number the user gave; default 100).
+2. Take 20 of them and judge each against the stated ICP: right kind of
+   business, decision-maker title, size in range, and a real operating company.
+3. **15 or more of 20 in ICP (75%)**, the scrape is good. Proceed.
+4. **Fewer than 15**, something is wrong with the filters. Say what the misses
+   have in common, revise, and re-scrape. Keyword breadth is the usual culprit:
+   a keyword that also matches suppliers, manufacturers, or consultants pulls in
+   businesses that don't field inbound service calls.
+5. Only run the full scrape and the full enrichment once the gate passes.
+
+Report the sample honestly. A 12 of 20 that you talk up as fine costs the user a
+whole enrichment run.
 
 ## Process
 
