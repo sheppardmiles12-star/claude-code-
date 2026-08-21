@@ -206,3 +206,42 @@ Two things to carry forward:
   and `supply` do not appear in their copy. If the next gate fails on the fresh
   slice too, the lever is `companyNameIncludes` rather than more excludes, since
   operating contractors nearly always carry the trade in the company name.
+
+## Run 4 — `roofing_us_v4_verified_only.json`, fresh slice
+
+- Run `xdnCKDlrKcMmQvs9c`, dataset `2zQfU0Jy5M0yDT41Y`, 100 leads billed.
+- `remainingInSearch` 1,271 to 1,171, so the cursor continued rather than reset.
+- **Deduped before gating**, per the rule added to the skill after run 3.
+
+| | Count |
+|---|---|
+| Rows returned | 100 |
+| Unique companies | 98 |
+| Already scraped in runs 1 to 3 | **5** |
+| Net new companies | **93** |
+
+94% net new, against 33% last run. That confirms the run 3 diagnosis: the
+re-serve was a one-time cost of changing the filter set, not a property of the
+filter itself.
+
+### Gate: 16/20 (80%). PASS
+
+Scored on the first 20 net-new rows. Every row is verified by construction, so
+this is a pure trade-purity read.
+
+The 4 misses are all businesses that sell *to* roofers rather than roofing:
+
+| Miss | What it actually is |
+|---|---|
+| Building Envelope Technology Associates | manufacturer's rep for roofing products |
+| Construction Link / Roofing Solutions LA | back-office outsourcing for roofing contractors |
+| SubcontractorHub | software platform for roofing businesses |
+| BlueThread Services | rollup acquiring roofing companies |
+
+Same leak as before and still not worth another exclude pass: at 80% the gate
+clears, and the terms these four would need (`representative`, `outsourcing`,
+`platform`, `group`) would cost real contractors too.
+
+**The filter set is now validated.** Verified-only plus the trade excludes
+delivers a batch where 4 in 5 rows are genuine roofing contractors on
+deliverable addresses, and 1,171 leads remain in the pool.
